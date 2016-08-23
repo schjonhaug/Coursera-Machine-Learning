@@ -1,0 +1,1 @@
+[Coursera Machine Learning](https://www.coursera.org/learn/machine-learning) course taken August 2016. Excersises solved using [Octave 4.0.3](https://www.gnu.org/software/octave/) for Macintosh.
