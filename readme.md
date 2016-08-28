@@ -1,1 +1,1 @@
-[Coursera Machine Learning](https://www.coursera.org/learn/machine-learning) course taken August 2016. Excersises solved using [Octave 4.0.3](https://www.gnu.org/software/octave/) for Macintosh.
+Programming assigments from [Stanford University's Machine Learning course](https://www.coursera.org/learn/machine-learning), taken August 2016. Assigments were solved using [Octave 4.0.3](https://www.gnu.org/software/octave/) for Macintosh.
