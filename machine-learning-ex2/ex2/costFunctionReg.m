@@ -29,7 +29,7 @@ J = 1/m * sum(-y .* log(hypothesis) - (1 - y) .* log(1 - hypothesis)) + lambda/(
 
 for j=1:size(grad)
 	
-	grad(j,:) = 1/m .* sum((hypothesis - y) .* X(:,j));
+	grad(j,:) = (1/m .* sum((hypothesis - y) .* X(:,j))) + lambda/m * theta_with_theta_1_equal_to_0(j,:);
 				
 end
 
