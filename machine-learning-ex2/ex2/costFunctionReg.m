@@ -22,7 +22,7 @@ grad = zeros(size(theta));
 hypothesis = sigmoid(X * theta);
 
 theta_with_theta_1_equal_to_0 = theta;
-theta_with_theta_1_equal_to_0(1,:) = 0;
+theta_with_theta_1_equal_to_0(1) = 0;
 
 J = 1/m * sum(-y .* log(hypothesis) - (1 - y) .* log(1 - hypothesis)) + lambda/(2*m) * sum(theta_with_theta_1_equal_to_0.^2);
 	
