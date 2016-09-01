@@ -36,13 +36,17 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+hypothesis = sigmoid(X * theta);
+
+theta_with_theta_1_equal_to_0 = theta;
+theta_with_theta_1_equal_to_0(1) = 0;
 
 
+unregularized_J = 1/m * sum(-y .* log(hypothesis) - (1 - y) .* log(1 - hypothesis));
+J = unregularized_J + lambda/(2*m) * sum(theta_with_theta_1_equal_to_0.^2);
 
-
-
-
-
+unregularized_grad = X' * (hypothesis - y)/m;
+grad = unregularized_grad + (lambda/m * theta_with_theta_1_equal_to_0);
 
 
 % =============================================================
