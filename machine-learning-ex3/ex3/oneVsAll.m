@@ -49,8 +49,6 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
-
-
 for c = 1: num_labels
 	
 	% Set Initial theta
@@ -63,6 +61,9 @@ for c = 1: num_labels
 	% Run fmincg to obtain the optimal theta
 	% This function will return theta and the cost 
 	[theta] = fmincg (@(t)(lrCostFunction(t, X, (y == c), lambda)), initial_theta, options);
+	
+	
+	all_theta(c,:) = theta;
 	
 end
 
