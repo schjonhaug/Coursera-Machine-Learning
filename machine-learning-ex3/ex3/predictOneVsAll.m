@@ -31,10 +31,11 @@ X = [ones(m, 1) X];
 %       
 
 
+hypothesis = sigmoid(X * all_theta');
 
+[max_value, max_index] = max(hypothesis, [], 2);
 
-
-
+p = max_index;
 
 % =========================================================================
 
