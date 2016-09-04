@@ -22,11 +22,19 @@ p = zeros(size(X, 1), 1);
 %
 
 
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
 
+A = sigmoid(X * Theta1');
 
+% Add ones to the A data matrix
+A = [ones(size(A,1), 1) A];
 
+hypothesis = sigmoid(A * Theta2');
 
+[max_value, max_index] = max(hypothesis, [], 2);
 
+p = max_index;
 
 
 % =========================================================================
