@@ -90,7 +90,11 @@ Theta2_grad = zeros(size(Theta2));
 %               first time.
 %
 	
-	
+	for t = 1:m
+		a_1 = X(:,t);
+		a_1 = [1; a_1];
+		
+	end
 	
 	
 	
