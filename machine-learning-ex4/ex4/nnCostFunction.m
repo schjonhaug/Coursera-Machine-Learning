@@ -50,29 +50,13 @@ Theta2_grad = zeros(size(Theta2));
 	hypothesis = sigmoid(Z3);
 	
 	
-	y_recoded = zeros(num_labels, m);
-	for i = 1: m
-		y_recoded(y(m),i) = 1;
-	end
+    y_recoded = zeros(num_labels, m);
+    for i = 1: m
+        y_recoded(y(i),i) = 1;
+    end
 
-	%J = 1/m * -y * log(hypothesis) - (1 - y) * log(1 - hypothesis);
+	J = 1/m * sum(sum( -y_recoded .* log(hypothesis) - (1 - y_recoded) .* log(1 - hypothesis)));
 
-
-
-	%for i=1:m
-		
-	%	for k=1:num_labels
-			
-	%		J = J -y * log(hypothesis) - (1 - y) * log(1 - hypothesis);
-	
-	%	end
-				
-	%end
-
-	%J = J/m;
-
-	
-	
 	
 	
 %
