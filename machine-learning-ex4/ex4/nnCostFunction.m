@@ -40,7 +40,8 @@ Theta2_grad = zeros(size(Theta2));
 %         computed in ex4.m
 	
 	
-
+	%Forward propagation
+		
 	A1 = [ones(m, 1) X];
 	Z2 = Theta1 * A1';
 	
@@ -55,8 +56,21 @@ Theta2_grad = zeros(size(Theta2));
         y_recoded(y(i),i) = 1;
     end
 
+	%Unregularized cost
+		
 	J = 1/m * sum(sum( -y_recoded .* log(hypothesis) - (1 - y_recoded) .* log(1 - hypothesis)));
 
+	
+	%Add the regularized cost
+	
+	% Dropping the bias coloumns of Theta 1 and Theta 2	
+	T1 = Theta1(:,2:size(Theta1,2));
+	T2 = Theta2(:,2:size(Theta2,2));
+	
+	Reg = lambda / (2*m) * (sum(sum(T1.^2)) + sum(sum(T2.^2)));
+	
+	J = J + Reg;
+	
 	
 	
 %
@@ -75,6 +89,12 @@ Theta2_grad = zeros(size(Theta2));
 %               over the training examples if you are implementing it for the 
 %               first time.
 %
+	
+	
+	
+	
+	
+	
 % Part 3: Implement regularization with the cost function and gradients.
 %
 %         Hint: You can implement this around the code for
