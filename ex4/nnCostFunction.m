@@ -39,11 +39,13 @@ Theta2_grad = zeros(size(Theta2));
 %         cost function computation is correct by verifying the cost
 %         computed in ex4.m
 	
+    
+    %Bias
+    
+    X = [ones(m,1) X];
 	
 	%Forward propagation
-		
-	A1 = [ones(m, 1) X];
-	Z2 = Theta1 * A1';
+	Z2 = Theta1 * X';
 	
 	A2 = [ones(m, 1) sigmoid(Z2)'];	
 	Z3 = Theta2 * A2';
@@ -51,14 +53,14 @@ Theta2_grad = zeros(size(Theta2));
 	hypothesis = sigmoid(Z3);
 	
 	
-    y_recoded = zeros(num_labels, m);
+    y_k = zeros(num_labels, m);
     for i = 1: m
-        y_recoded(y(i),i) = 1;
+        y_k(y(i),i) = 1;
     end
 
 	%Unregularized cost
 		
-	J = 1/m * sum(sum( -y_recoded .* log(hypothesis) - (1 - y_recoded) .* log(1 - hypothesis)));
+	J = 1/m * sum(sum( -y_k .* log(hypothesis) - (1 - y_k) .* log(1 - hypothesis)));
 
 	
 	%Add the regularized cost
@@ -91,11 +93,41 @@ Theta2_grad = zeros(size(Theta2));
 %
 	
 	for t = 1:m
-		a_1 = X(:,t);
-		a_1 = [1; a_1];
 		
+        %%%%%%%%%%%%%%%%%%%%%
+        % Feed forward pass %
+        %%%%%%%%%%%%%%%%%%%%%
+        
+        a_1 = X(t,:)';
+
+        z_2 = Theta1 * a_1;
+        z_2 = [1; z_2];
+
+        a_2 = sigmoid(z_2);	
+        z_3 = Theta2 * a_2;
+
+        a_3 = sigmoid(z_3);
+
+        %%%%%%%%%%%%%%%%%%%%
+        % Back propagation %
+        %%%%%%%%%%%%%%%%%%%%
+        
+        %Caculating deltas
+        
+        delta_3 = a_3 - y_k(:,t);
+        delta_2 = Theta2' * delta_3 .* sigmoidGradient(z_2);
+    
+        %Removing d2_0
+        delta_2 = delta_2(2:end);
+        
+        Theta1_grad = Theta1_grad + delta_2 * a_1';
+        Theta2_grad = Theta2_grad + delta_3 * a_2';
+        
 	end
 	
+    Theta1_grad = Theta1_grad./m;
+    Theta2_grad = Theta2_grad./m;
+    
 	
 	
 	
