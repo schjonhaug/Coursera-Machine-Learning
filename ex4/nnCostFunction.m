@@ -146,6 +146,16 @@ Theta2_grad = zeros(size(Theta2));
 
 
 
+    T1 = Theta1(:,2:end);
+    T2 = Theta2(:,2:end);
+    
+    %Inserting zeros in the first column
+    Theta1_with_theta_1_equal_to_0 = [zeros(size(T1,1), 1), T1];
+    Theta2_with_theta_1_equal_to_0 = [zeros(size(T2,1), 1), T2];
+    
+    
+    Theta1_grad = Theta1_grad + (lambda/m * Theta1_with_theta_1_equal_to_0);
+    Theta2_grad = Theta2_grad + (lambda/m * Theta2_with_theta_1_equal_to_0);
 
 
 
