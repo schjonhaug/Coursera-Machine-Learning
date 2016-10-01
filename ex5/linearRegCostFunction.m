@@ -19,16 +19,19 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+	hypothesis = X * theta;
+
+	theta_with_theta_1_equal_to_0 = theta;
+	theta_with_theta_1_equal_to_0(1) = 0;
 
 
+	unregularized_J = 1/(2*m) * sum((hypothesis - y).^2);
+	J = unregularized_J + lambda/(2*m) * sum(theta_with_theta_1_equal_to_0.^2);
 
-
-
-
-
-
-
-
+	unregularized_grad = X' * (hypothesis - y)/m;
+	grad = unregularized_grad + (lambda/m * theta_with_theta_1_equal_to_0);
+	
+	
 
 % =========================================================================
 
