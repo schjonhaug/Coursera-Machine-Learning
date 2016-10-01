@@ -15,11 +15,14 @@ X_poly = zeros(numel(X), p);
 %
 % 
 
+	%Setting the first column to be the vector X.
+	X_poly(:,1) = X;
 
-
-
-
-
+	for i = 2:p
+		%Setting the i'th column to be vector X.^i
+		X_poly(:,i) = X.^i;		
+	end
+	
 % =========================================================================
 
 end
