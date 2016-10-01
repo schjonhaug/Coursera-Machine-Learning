@@ -218,3 +218,17 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
+
+
+%Ungraded exercise
+	
+fprintf('\n\n3.4 Optional (ungraded) exercise: Computing test set error\n\n');
+
+bestLambda = 3;
+		
+[theta] = trainLinearReg(X_poly, y, bestLambda);
+	
+[Jtest, grad] = linearRegCostFunction(X_poly_test, ytest, theta, 0);
+
+fprintf('Test error: %f \n\n', Jtest);
