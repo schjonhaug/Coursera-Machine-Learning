@@ -25,7 +25,7 @@ function submitWithConfiguration(conf)
     fprintf( ...
       '!! Submission failed: unexpected error: %s\n', ...
       e.message);
-    fprintf('!! Please try again later.\n');
+	fprintf('Error from file:%s\nFunction:%s\nOn line:%d\n', e.stack(1,1).file,e.stack(1,1).name, e.stack(1,1).line );
     return
   end
 
