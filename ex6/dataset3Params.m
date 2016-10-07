@@ -23,7 +23,25 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+    lowest_error = Inf;
 
+    for temp_C = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30]
+        for temp_sigma = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30]
+        
+            model= svmTrain(X, y, temp_C, @(x1, x2) gaussianKernel(x1, x2, temp_sigma));
+            predictions = svmPredict(model, Xval);
+            temp_error = mean(double(predictions ~= yval));
+            
+            if (temp_error < lowest_error)
+                C = temp_C;
+                sigma = temp_sigma;
+                lowest_error = temp_error;
+                %fprintf('New lowest error: %f.\n', lowest_error);
+                
+            endif
+            
+        endfor    
+    endfor
 
 
 
