@@ -20,10 +20,23 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
+    
+    for i = 1: length(X)
 
+        lowestCost = Inf;
 
+        for k = 1: K
+        
+            cost = norm(X(i,:) - centroids(k,:))^2;
+        
+            if (cost < lowestCost)
+                idx(i) = k;
+                lowestCost = cost;
+            endif
 
-
+        endfor
+        
+    endfor
 
 
 
