@@ -25,8 +25,30 @@ centroids = zeros(K, n);
 %
 % Note: You can use a for-loop over the centroids to compute this.
 %
-
-
+    
+    
+    for k = 1: K
+        
+        sum = 0;
+        numberOfCentroidsAssigned = 0;
+        
+        for x = 1: m
+        
+            if idx(x) == k
+            
+                %Include this in the summation
+                sum = sum + X(x,:);
+                numberOfCentroidsAssigned = numberOfCentroidsAssigned + 1;
+            
+            endif
+            
+        endfor
+        
+                
+        centroids(k,:) = sum/numberOfCentroidsAssigned;
+        
+        
+    endfor
 
 
 
