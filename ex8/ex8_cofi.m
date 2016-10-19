@@ -196,9 +196,7 @@ options = optimset('GradObj', 'on', 'MaxIter', 100);
 
 % Set Regularization
 lambda = 10;
-theta = fmincg (@(t)(cofiCostFunc(t, Y, R, num_users, num_movies, ...
-                                num_features, lambda)), ...
-                initial_parameters, options);
+theta = fmincg (@(t)(cofiCostFunc(t, Ynorm, R, num_users, num_movies, num_features, lambda)), initial_parameters, options);
 
 % Unfold the returned theta back into U and W
 X = reshape(theta(1:num_movies*num_features), num_movies, num_features);
