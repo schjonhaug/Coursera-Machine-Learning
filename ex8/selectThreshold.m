@@ -24,13 +24,33 @@ for epsilon = min(pval):stepsize:max(pval)
     %       of 0's and 1's of the outlier predictions
 
 
+    cvPredictions = (pval < epsilon);
 
+    % Calculcating F1 score
+    
+    % tp is the number of true positives:
+    % the ground truth label says it’s an anomaly
+    %and our algorithm correctly classified it as an anomaly.
+    
+    tp = sum((yval == 1) & (cvPredictions == 1));
+    
+    
+    %fp is the number of false positives:
+    % the ground truth label says it’s not an anomaly,
+    % but our algorithm incorrectly classified it as an anomaly.
+    
+    fp = sum((yval == 0) & (cvPredictions == 1));
+    
+    %fn is the number of false negatives:
+    %the ground truth label says it’s an anomaly,
+    %but our algorithm incorrectly classified it as not being anomalous.
 
+    fn = sum((yval == 1) & (cvPredictions == 0));
 
-
-
-
-
+    precision = tp / (tp + fp);
+    recall = tp / (tp + fn);
+    
+    F1 = 2 * precision * recall / (precision + recall);
 
 
 
